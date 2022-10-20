@@ -22,7 +22,7 @@ const validateSignUpCredentials = async (email, password, userName) => {
         error = 'Please enter a strong password'
     }
     else if (exists) {
-        error = 'Student already exists with that email'
+        error = ' A student already exists with that email'
     }
     else {
         error = ''
@@ -35,7 +35,7 @@ const validateLoginCredentials = async (email, password) => {
     const student = await Student.findOne({ email })
     let error = ''
     if (!email || !password) {
-        error = 'Please fill in an email and a password'
+        error = 'Please provide an email and a password'
     } else if (!student) {
         error = 'Student not found with that email'
     } else if (student) {
