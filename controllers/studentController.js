@@ -14,7 +14,7 @@ const validateSignUpCredentials = async (email, password, userName) => {
     let error = ''
     const exists = await Student.findOne({ email }) ? true : false
     if (!email || !password || !userName) {
-        error = 'Please fill in a valid email, userName and a password'
+        error = 'Please fill in a valid email, user name and a password'
     } else if (!validator.isEmail(email)) {
         error = 'Please enter a valid Email Addresss'
     }
