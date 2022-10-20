@@ -70,9 +70,9 @@ const signupStudent = async (req, res) => {
     } else {
         const student = Student.signup(email, password, userName)
         const token = createToken(student._id)
-        res.status(200).json({ email, token, student})
+        res.status(200).json({ email, token, student })
+    }
 }
-
 //GET STUDENT HISTORY CONTROLLER
 const getStudentHistory = async (req, res) => {
     const { email } = req.body;
