@@ -1,5 +1,5 @@
 const express = require('express')
-const {loginStudent, signupStudent, updateStudentHistory, getStudentHistory} = require('../controllers/studentController')
+const { loginStudent, signupStudent, updateStudentHistory, getStudentHistory } = require('../controllers/studentController')
 const router = express.Router()
 
 // @desc    Login Student

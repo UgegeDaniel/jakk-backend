@@ -47,7 +47,7 @@ const validateLoginCredentials = async (email, password) => {
     return error
 }
 
-//LOG IN CREDENTIALS CONTROLLER
+//LOG IN  CONTROLLER
 const loginStudent = async (req, res) => {
     const { email, password } = req.body;
     const student = await Student.findOne({ email })
@@ -61,7 +61,7 @@ const loginStudent = async (req, res) => {
     }
 }
 
-//SIGN UP CREDENTIALS CONTROLLER
+//SIGN UP  CONTROLLER
 const signupStudent = async (req, res) => {
     const { email, password, userName } = req.body;
     const error = await validateSignUpCredentials(email, password, userName)
@@ -70,16 +70,14 @@ const signupStudent = async (req, res) => {
     } else {
         const student = Student.signup(email, password, userName)
         const token = createToken(student._id)
-        res.status(200).json({ email, token, userName })
-        console.log(userName)
-    }
+        res.status(200).json({ email, token, student})
 }
 
 //GET STUDENT HISTORY CONTROLLER
 const getStudentHistory = async (req, res) => {
     const { email } = req.body;
     try {
-        const student =  await Student.findOne({ email });
+        const student = await Student.findOne({ email });
         const studentHistory = student.history
         res.status(200).json({ studentHistory })
     } catch (error) {
