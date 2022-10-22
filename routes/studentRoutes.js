@@ -1,5 +1,5 @@
 const express = require('express')
-const { loginStudent, signupStudent, updateStudentHistory, getStudentHistory } = require('../controllers/studentController')
+const { loginStudent, signupStudent, updateStudentHistory } = require('../controllers/studentController')
 const router = express.Router()
 
 // @desc    Login Student
@@ -11,11 +11,6 @@ router.post('/login', loginStudent)
 // @route   POST /student/signup
 // @access  Public
 router.post('/signup', signupStudent)
-
-// @desc    Get student history
-// @route   POST /student/history
-// @access  Private
-router.post('/history', getStudentHistory)
 
 // @desc    Update student history
 // @route   POST /student/updateHistory

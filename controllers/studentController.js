@@ -6,7 +6,7 @@ const JWT_SECRET = process.env.JWT_SECRET
 
 //TOKEN CREATION
 const createToken = (_id) => {
-    return jwt.sign({ _id }, JWT_SECRET, { expiresIn: '3d' })
+    return jwt.sign({ _id }, `${JWT_SECRET}`, { expiresIn: '3d' })
 }
 
 //SIGN UP CREDENTIALS VALIDATION
@@ -73,26 +73,16 @@ const signupStudent = async (req, res) => {
         res.status(200).json({ email, token, student })
     }
 }
-//GET STUDENT HISTORY CONTROLLER
-const getStudentHistory = async (req, res) => {
-    const { email } = req.body;
-    try {
-        const student = await Student.findOne({ email });
-        const studentHistory = student.history
-        res.status(200).json({ studentHistory })
-    } catch (error) {
-        res.status(500).json({ error })
-    }
-}
 
 //UPDATE STUDENT HISTORY CONTROLLER
 const updateStudentHistory = async (req, res) => {
     const { email, newData } = req.body;
     try {
         const student = await Student.findOne({ email });
-        [...student.history, newData]
-        const newHistory = student.history
-        res.status(201).json({ newHistory })
+        const {_id, history} = student
+        await Student.updateOne({_id} , {$push: {history : newData}});
+        const token = createToken(student._id)
+        res.status(200).json({ email, token, student })
     } catch (error) {
         res.status(500).json({ error })
     }
@@ -101,6 +91,5 @@ const updateStudentHistory = async (req, res) => {
 module.exports = {
     loginStudent,
     signupStudent,
-    getStudentHistory,
     updateStudentHistory
 }
