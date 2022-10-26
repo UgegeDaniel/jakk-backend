@@ -4,7 +4,7 @@ const cors = require('cors')
 const studentRoutes = require('./routes/studentRoutes')
 require('dotenv').config()
 //CONSTANTS
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 5000
 const CONNECTION_STRING = process.env.MONGO_DB_CONNECTION_URI
 const app = express();
 //ALLOW CROSS ORIGIN REQUEST 

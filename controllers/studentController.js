@@ -2,11 +2,11 @@ const jwt = require('jsonwebtoken')
 const Student = require('../models/studentModel')
 const validator = require('validator')
 const bcrypt = require("bcrypt")
-const JWT_SECRET = process.env.JWT_SECRET
+const JWT_SECRET = `${process.env.JWT_SECRET}`
 
 //TOKEN CREATION
 const createToken = (_id) => {
-    return jwt.sign({ _id }, `${JWT_SECRET}`, { expiresIn: '3d' })
+    return jwt.sign({ _id }, JWT_SECRET, { expiresIn: '3d' })
 }
 
 //SIGN UP CREDENTIALS VALIDATION
@@ -56,8 +56,8 @@ const loginStudent = async (req, res) => {
         res.status(400).json({ error })
     } else {
         const token = createToken(student._id)
-        const { userName } = student
-        res.status(200).json({ email, token, userName })
+        const { history, userName} = student
+        res.status(200).json({ token, email, history, userName})
     }
 }
 
@@ -68,9 +68,10 @@ const signupStudent = async (req, res) => {
     if (error) {
         res.status(400).json({ error })
     } else {
-        const student = Student.signup(email, password, userName)
+        const student = await Student.signup(email, password, userName)
         const token = createToken(student._id)
-        res.status(200).json({ email, token, student })
+        const { history} = student
+        res.status(200).json({ token, email, userName, history})
     }
 }
 
@@ -79,12 +80,12 @@ const updateStudentHistory = async (req, res) => {
     const { email, newData } = req.body;
     try {
         const student = await Student.findOne({ email });
-        const {_id, history} = student
-        await Student.updateOne({_id} , {$push: {history : newData}});
-        const token = createToken(student._id)
-        res.status(200).json({ email, token, student })
+        const {_id, history, userName} = student
+        history.push(newData)
+        const updatedStudent = await Student.findByIdAndUpdate(_id, student, {new: true})
+        res.status(200).json({ email, userName, history})
     } catch (error) {
-        res.status(500).json({ error })
+        res.status(500).json({error})
     }
 }
 
@@ -93,3 +94,5 @@ module.exports = {
     signupStudent,
     updateStudentHistory
 }
+
+
