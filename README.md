@@ -49,7 +49,7 @@ your@pc:~$ npm start
 
  _Sign up at https://www.mongodb.com to get *Mongo DB connection URL* ._
 
-Visit https://github.com/UgegeDaniel/jakk-backend for sample API call  
+_ Visit https://github.com/UgegeDaniel/jakk-backend for sample API call _
 
 ## API call Examples
 ```js
@@ -80,17 +80,21 @@ const signup = async (credentials) => {
 <h4> Example response </h4>
 <h5> Example Error response </h5>
 (without credentials)
-'''json
+
+```json
 {
     "error": "Please fill in a valid email, user name and a password"
 }
 ```
-(with a weak password)
-'''json
+
+(with a weak password --passwords should contain Uppercase, lowercase, numbers and symbols)
+
+```json
 {
     "error": "Please enter a strong password"
 }
 ```
+
 <h5> Example Success response </h5>
 (with valid credentials)
 ```json 
@@ -102,20 +106,7 @@ const signup = async (credentials) => {
 }
 ```
 
-Update History 
-```js
-const updateHistory = async (email, newData) => {
-    const response = await fetch(`${baseUrl}/student/updateHistory`, { ...options, body: JSON.stringify({ email, newData }) })
-    const data  = await response.json();
-    if (!response.ok) {
-       return
-    }
-    if (response.ok) {
-        localStorage.setItem('student', JSON.stringify(data))
-        return
-    }
-}
-```
+
 login User
 
 ```js
@@ -133,4 +124,18 @@ const login = async (credentials) => {
 }
 ```
 
+Update History 
+```js
+const updateHistory = async (email, newData) => {
+    const response = await fetch(`${baseUrl}/student/updateHistory`, { ...options, body: JSON.stringify({ email, newData }) })
+    const data  = await response.json();
+    if (!response.ok) {
+       return
+    }
+    if (response.ok) {
+        localStorage.setItem('student', JSON.stringify(data))
+        return
+    }
+}
+```
 ## License
