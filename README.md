@@ -62,6 +62,7 @@ const baseUrl = 'https://jakk-backend.herokuapp.com'
 ```
 
 <h3>Sign Up User</h3>
+
 ```js
 const signup = async (credentials) => {
     const { email, password, userName } = credentials
