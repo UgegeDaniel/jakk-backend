@@ -96,7 +96,9 @@ const signup = async (credentials) => {
 ```
 
 <h5> Example Success response </h5>
+
 (with valid credentials)
+
 ```json 
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzVhZTY1ODZiMTNjYTBmZDM3MzQwZjciLCJpYXQiOjE2NjY5MDE1OTIsImV4cCI6MTY2NzE2MDc5Mn0.whyFJ-cH8jsp2RsDAMpsx2QrN6BBtnqzSXxUD3qrLGY",
