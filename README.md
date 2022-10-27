@@ -150,7 +150,8 @@ const login = async (credentials) => {
 
 (with an incorrect password)
 
-```json {
+```json 
+{
     "error": "Please provide a correct password"
 }
 ```
