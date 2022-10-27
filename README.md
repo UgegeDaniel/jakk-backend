@@ -190,10 +190,16 @@ const updateHistory = async (email, newData) => {
 
 ```json 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzVhZTY1ODZiMTNjYTBmZDM3MzQwZjciLCJpYXQiOjE2NjY5MDE1OTIsImV4cCI6MTY2NzE2MDc5Mn0.whyFJ-cH8jsp2RsDAMpsx2QrN6BBtnqzSXxUD3qrLGY",
     "email": "janeDoe@gmail.com",
     "userName": "Jane Doe",
-    "history": [{""}]
+    "history": [
+        {
+            "id": "2022-10-22T22:04:33.588Z",
+            "scores": "5.00",
+            "subject": "english",
+            "timeTaken": "2022-10-22T22:04:33.588Z"
+        }
+    ]
 }
 ```
 ## License
