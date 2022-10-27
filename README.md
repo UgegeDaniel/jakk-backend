@@ -76,7 +76,10 @@ const signup = async (credentials) => {
     }
 }
 ```
+Example response 
+'''json
 
+```
 login User
 
 ```js
@@ -93,5 +96,21 @@ const login = async (credentials) => {
     }
 }
 ```
-
+Example response 
+'''json
+```
+Update History 
+```js
+const updateHistory = async (email, newData) => {
+    const response = await fetch(`${baseUrl}/student/updateHistory`, { ...options, body: JSON.stringify({ email, newData }) })
+    const data  = await response.json();
+    if (!response.ok) {
+       return
+    }
+    if (response.ok) {
+        localStorage.setItem('student', JSON.stringify(data))
+        return
+    }
+}
+```
 ## License
