@@ -147,11 +147,14 @@ const login = async (credentials) => {
     "error": "Student not found with that email"
 }
 ```
+
 (with an incorrect password)
+
 ```json {
     "error": "Please provide a correct password"
 }
 ```
+
 <h5> Example Success response </h5>
 
 (with valid credentials)
