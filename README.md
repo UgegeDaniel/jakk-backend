@@ -61,7 +61,7 @@ const options = {
 const baseUrl = 'https://jakk-backend.herokuapp.com'
 ```
 
-Sign Up User
+<h3>Sign Up User</h3>
 ```js
 const signup = async (credentials) => {
     const { email, password, userName } = credentials
@@ -109,7 +109,7 @@ const signup = async (credentials) => {
 ```
 
 
-login User
+<h3>login User</h3>
 
 ```js
 const login = async (credentials) => {
@@ -126,6 +126,38 @@ const login = async (credentials) => {
 }
 ```
 
+<h4> Example response </h4>
+<h5> Example Error response </h5>
+(without credentials)
+
+```json
+{
+    "error": "Please fill in a valid email and a password"
+}
+```
+(with unregistered email address)
+```json
+{
+    "error": "Student not found with that email"
+}
+```
+(with an incorrect password)
+```json {
+    "error": "Please provide a correct password"
+}
+```
+<h5> Example Success response </h5>
+
+(with valid credentials)
+
+```json 
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzVhZTY1ODZiMTNjYTBmZDM3MzQwZjciLCJpYXQiOjE2NjY5MDE1OTIsImV4cCI6MTY2NzE2MDc5Mn0.whyFJ-cH8jsp2RsDAMpsx2QrN6BBtnqzSXxUD3qrLGY",
+    "email": "janeDoe@gmail.com",
+    "userName": "Jane Doe",
+    "history": []
+}
+```
 Update History 
 ```js
 const updateHistory = async (email, newData) => {
@@ -138,6 +170,19 @@ const updateHistory = async (email, newData) => {
         localStorage.setItem('student', JSON.stringify(data))
         return
     }
+}
+```
+
+<h5> Example Success response </h5>
+
+(with valid credentials)
+
+```json 
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzVhZTY1ODZiMTNjYTBmZDM3MzQwZjciLCJpYXQiOjE2NjY5MDE1OTIsImV4cCI6MTY2NzE2MDc5Mn0.whyFJ-cH8jsp2RsDAMpsx2QrN6BBtnqzSXxUD3qrLGY",
+    "email": "janeDoe@gmail.com",
+    "userName": "Jane Doe",
+    "history": [{""}]
 }
 ```
 ## License
