@@ -76,9 +76,45 @@ const signup = async (credentials) => {
     }
 }
 ```
-Example response 
-'''json
 
+<h4> Example response </h4>
+<h5> Example Error response </h5>
+(without credentials)
+'''json
+{
+    "error": "Please fill in a valid email, user name and a password"
+}
+```
+(with a weak password)
+'''json
+{
+    "error": "Please enter a strong password"
+}
+```
+<h5> Example Success response </h5>
+(with valid credentials)
+```json 
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzVhZTY1ODZiMTNjYTBmZDM3MzQwZjciLCJpYXQiOjE2NjY5MDE1OTIsImV4cCI6MTY2NzE2MDc5Mn0.whyFJ-cH8jsp2RsDAMpsx2QrN6BBtnqzSXxUD3qrLGY",
+    "email": "janeDoe@gmail.com",
+    "userName": "Jane Doe",
+    "history": []
+}
+```
+
+Update History 
+```js
+const updateHistory = async (email, newData) => {
+    const response = await fetch(`${baseUrl}/student/updateHistory`, { ...options, body: JSON.stringify({ email, newData }) })
+    const data  = await response.json();
+    if (!response.ok) {
+       return
+    }
+    if (response.ok) {
+        localStorage.setItem('student', JSON.stringify(data))
+        return
+    }
+}
 ```
 login User
 
@@ -96,21 +132,5 @@ const login = async (credentials) => {
     }
 }
 ```
-Example response 
-'''json
-```
-Update History 
-```js
-const updateHistory = async (email, newData) => {
-    const response = await fetch(`${baseUrl}/student/updateHistory`, { ...options, body: JSON.stringify({ email, newData }) })
-    const data  = await response.json();
-    if (!response.ok) {
-       return
-    }
-    if (response.ok) {
-        localStorage.setItem('student', JSON.stringify(data))
-        return
-    }
-}
-```
+
 ## License
