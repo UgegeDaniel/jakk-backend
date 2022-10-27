@@ -52,9 +52,16 @@ your@pc:~$ npm start
 Visit https://github.com/UgegeDaniel/jakk-backend for sample API call  
 
 ## API call Examples
+```js
+const options = {
+    method: 'POST',
+    headers: { 'Content-type': 'application/json' },
+};
+
+const baseUrl = 'https://jakk-backend.herokuapp.com'
+```
 
 Sign Up User
-
 ```js
 const signup = async (credentials) => {
     const { email, password, userName } = credentials
@@ -69,7 +76,6 @@ const signup = async (credentials) => {
     }
 }
 ```
-
 
 login User
 
