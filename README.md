@@ -94,7 +94,12 @@ const signup = async (credentials) => {
     "error": "Please enter a strong password"
 }
 ```
-
+(with an already registered email address)
+```json
+{
+    "error": " A student already exists with that email"
+}
+```
 <h5> Example Success response </h5>
 
 (with valid credentials)
@@ -158,6 +163,7 @@ const login = async (credentials) => {
     "history": []
 }
 ```
+
 Update History 
 ```js
 const updateHistory = async (email, newData) => {
